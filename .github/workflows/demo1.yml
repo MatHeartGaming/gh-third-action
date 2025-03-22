@@ -2,7 +2,18 @@ name: Events Demo 1
 on:
   pull_request:
     types: [opened, synchronize, edited, reopened]
+    branches:
+      - main
+      - 'dev-*' # Match any branch that starts with 'dev-'
+      - 'feat/**' # Match any branch that starts with 'feat/'
   workflow_dispatch:
+  push:
+    branches:
+      - main
+      - 'dev-*' # Match any branch that starts with 'dev-'
+      - 'feat/**' # Match any branch that starts with 'feat/'
+    paths-ignore:
+      - '.github/workflows/*'
 jobs:
   deploy:
     runs-on: ubuntu-latest
